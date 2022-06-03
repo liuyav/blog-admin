@@ -11,6 +11,7 @@ specifiers:
   axios: ^0.27.2
   commitizen: ^4.2.4
   commitlint-config-cz: ^0.13.3
+  consola: ^2.15.3
   cz-conventional-changelog: ^3.3.0
   cz-customizable: ^6.3.0
   element-plus: ^2.2.2
@@ -48,6 +49,7 @@ devDependencies:
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.36
   commitizen: 4.2.4
   commitlint-config-cz: 0.13.3
+  consola: 2.15.3
   cz-conventional-changelog: 3.3.0
   cz-customizable: 6.3.0
   eslint: 8.16.0
@@ -1118,6 +1120,10 @@ packages:
       inherits: 2.0.4
       readable-stream: 3.6.0
       typedarray: 0.0.6
+    dev: true
+
+  /consola/2.15.3:
+    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: true
 
   /console/0.7.2:

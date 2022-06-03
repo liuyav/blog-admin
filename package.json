@@ -44,6 +44,7 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "commitizen": "^4.2.4",
     "commitlint-config-cz": "^0.13.3",
+    "consola": "^2.15.3",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.3.0",
     "eslint": "^8.16.0",
