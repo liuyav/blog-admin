@@ -18,7 +18,7 @@ module.exports = {
   ],
 
   rules: {
-    indent: [2, 2],
+    indent: [0],
   },
   overrides: [
     {
