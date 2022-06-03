@@ -3,7 +3,7 @@ module.exports = {
 
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    ecmaVersion: 2020,
+    ecmaVersion: 2022,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
@@ -18,7 +18,23 @@ module.exports = {
   ],
 
   rules: {
-    // override/add rules settings here, such as:
-    tabWidth: 4,
+    indent: [2, 2],
   },
+  overrides: [
+    {
+      files: ['src/views/index.vue', 'src/views/**/index.vue'], // 匹配views和二级目录中的index.vue
+      rules: {
+        'vue/multi-word-component-names': 'off', // 组件名字要多个单词
+      },
+    },
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };

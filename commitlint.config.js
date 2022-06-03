@@ -26,8 +26,8 @@ module.exports = {
     'type-case': [2, 'always', 'lower-case'],
     // <type> 不能为空
     'type-empty': [2, 'never'],
-    // <scope> 范围不能为空
-    'scope-empty': [2, 'never'],
+    // <scope> 范围
+    'scope-empty': [0],
     // <scope> 范围格式
     'scope-case': [0],
     // <subject> 主要 message 不能为空
