@@ -14,11 +14,13 @@ specifiers:
   typescript: ^4.5.4
   vite: ^2.9.9
   vue: ^3.2.25
+  vue-router: ^4.0.15
   vue-tsc: ^0.34.7
 
 dependencies:
   pinia: 2.0.14_qhv4oyzxhhzeba5rd2zztmcg2y
   vue: 3.2.36
+  vue-router: 4.0.15_vue@3.2.36
 
 devDependencies:
   '@types/node': 17.0.38
@@ -1490,6 +1492,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /vue-router/4.0.15_vue@3.2.36:
+    resolution: {integrity: sha512-xa+pIN9ZqORdIW1MkN2+d9Ui2pCM1b/UMgwYUCZOiFYHAvz/slKKBDha8DLrh5aCG/RibtrpyhKjKOZ85tYyWg==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.1.4
+      vue: 3.2.36
+    dev: false
 
   /vue-tsc/0.34.17_typescript@4.7.2:
     resolution: {integrity: sha512-jzUXky44ZLHC4daaJag7FQr3idlPYN719/K1eObGljz5KaS2UnVGTU/XSYCd7d6ampYYg4OsyalbHyJIxV0aEQ==}
