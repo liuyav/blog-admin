@@ -8,15 +8,41 @@
 // body
 body {
   background-color: $bgColor;
+  overflow-x: hidden;
 }
 
-// AppMain.vue
-.main-container {
-  width: calc(100vw - $sideBarWidth);
-  min-height: 100vh;
-  margin-left: $sideBarWidth;
-}
+#app {
+  // AppMain.vue
+  .main-container {
+    width: calc(100vw - $sideBarWidth);
+    min-height: 100vh;
+    margin-left: $sideBarWidth;
+  }
 
-.content-container {
-  padding: $moduleSpacing;
+  .content-container {
+    margin: $moduleSpacing;
+  }
+
+  .cell {
+    white-space: nowrap;
+  }
+
+  /** 表格内容单元格样式 */
+  & td.el-table__cell .cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    vertical-align: text-bottom;
+  }
+
+  /** 小间距样式 */
+  .spacing-s {
+    margin-left: 5px;
+  }
+
+  /** 上下居中对齐 */
+  .v-center {
+    display: flex;
+    align-items: center;
+  }
 }

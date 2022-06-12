@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ElMessage, ElNotification } from 'element-plus';
 
 const showStatus = (status: number) => {
   let message = '';
@@ -42,18 +43,20 @@ const showStatus = (status: number) => {
   return `${message}，请检查网络或联系管理员！`;
 };
 
+const baseURL = import.meta.env.VITE_GLOB_API_URL;
+
 const service = axios.create({
   // 联调
-  baseURL: process.env.NODE_ENV,
+  baseURL,
   // 是否跨站点访问控制请求
   withCredentials: true,
   timeout: 30000,
-  transformRequest: [
-    (data) => {
-      data = JSON.stringify(data);
-      return data;
-    },
-  ],
+  // transformRequest: [
+  //   (data) => {
+  //     data = JSON.stringify(data);
+  //     return data;
+  //   },
+  // ],
   validateStatus() {
     // 使用async-await，处理reject情况较为繁琐，所以全部返回resolve，在业务代码中处理异常
     return true;
@@ -71,6 +74,7 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    console.log('config', config);
     return config;
   },
   (error) => {
@@ -86,6 +90,7 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     const status = response.status;
     let msg = '';
+    console.log('response', response);
     if (status < 200 || status >= 300) {
       // 处理http错误，抛到业务代码
       msg = showStatus(status);
@@ -94,8 +99,16 @@ service.interceptors.response.use(
       } else {
         response.data.msg = msg;
       }
+    } else if (status === 200) {
+      const { tool } = response.data;
+      const { message, tipType = '', title, type } = tool;
+      if (tipType === 'ElMessage') {
+        ElMessage({ type, message, grouping: true });
+      } else if (tipType === 'ElNotification') {
+        ElNotification({ title, type, message });
+      }
     }
-    return response;
+    return response.data;
   },
   (error) => {
     // 错误抛到业务代码

@@ -38,11 +38,10 @@ const routes: Array<RouteRecordRaw> = [
   // 文章管理
   {
     path: '/article',
-    redirect: '/article/manage',
     component: Layout,
     children: [
       {
-        path: 'manage',
+        path: '',
         component: () => import('@/views/article/index.vue'),
         meta: {
           title: '文章管理',

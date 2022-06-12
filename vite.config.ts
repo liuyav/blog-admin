@@ -1,15 +1,16 @@
-import type { UserConfig, ConfigEnv } from 'vite';
+import { UserConfig, ConfigEnv, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import * as path from 'path';
 import {
   createStyleImportPlugin,
   ElementPlusResolve,
 } from 'vite-plugin-style-import'; // 组件库样式按需引入
-import { viteMockServe } from 'vite-plugin-mock'; // mock服务
+// import { viteMockServe } from 'vite-plugin-mock'; // mock服务
 
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfig => {
   return {
+    base: loadEnv(command, process.cwd()).VITE_APP_NAME,
     resolve: {
       //设置别名
       alias: {
@@ -33,12 +34,12 @@ export default ({ command }: ConfigEnv): UserConfig => {
           },
         ],
       }),
-      viteMockServe({
-        // default
-        mockPath: '/mock',
-        localEnabled: command === 'serve',
-        supportTs: true,
-      }),
+      // viteMockServe({
+      //   // default
+      //   mockPath: '/mock',
+      //   localEnabled: command === 'serve',
+      //   supportTs: true,
+      // }),
     ],
     server: {
       port: 8080, //启动端口
@@ -49,9 +50,9 @@ export default ({ command }: ConfigEnv): UserConfig => {
       // 设置 https 代理
       proxy: {
         '/api': {
-          target: 'your https address',
+          target: 'http://127.0.0.1:7001/api',
           changeOrigin: true,
-          rewrite: (path: string) => path.replace(/^\/api/, ''),
+          rewrite: (path: string) => path.replace(/^\/api/, '/'),
         },
       },
     },

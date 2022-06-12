@@ -1,0 +1,32 @@
+// 包裹用于样式覆盖
+#app {
+  // 修改 card 默认间距
+  & .el-card__header,
+  & .el-card__body {
+    padding: $contentSpacing;
+  }
+
+  // 修改行内表单默认间距
+  & .el-form--inline .el-form-item:not(:last-child) {
+    margin-right: $contentSpacing;
+  }
+  & .el-form--inline .el-form-item:last-child {
+    margin-right: 0;
+  }
+  & .el-form-item__label {
+    padding: 0;
+    font-weight: normal;
+  }
+
+  // 修改按钮之间默认间距
+  & .el-button + .el-button {
+    margin-left: calc($moduleSpacing / 2);
+  }
+
+  // 修改分页默认样式
+  & .el-pagination {
+    justify-content: flex-end;
+    padding: 0;
+    margin-top: $contentSpacing;
+  }
+}

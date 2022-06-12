@@ -1,0 +1,33 @@
+import request from '@/utils/request';
+import type { ArticleListParams, ArticleList } from './types';
+import type { BaseResponse } from '../types';
+
+/**
+ * 查询文章列表
+ * @param params 文章列表查询参数
+ * @returns
+ */
+export const queryArticleList = async (
+  params: ArticleListParams,
+): Promise<any> => {
+  return await request({
+    method: 'get',
+    url: '/articles',
+    params,
+  });
+};
+
+/**
+ * 删除指定文章
+ * @param data 文章删除参数
+ * @returns
+ */
+export const deleteArticle = async (data: {
+  id: string;
+}): Promise<BaseResponse<ArticleList>> => {
+  return (await request({
+    method: 'delete',
+    url: '/article',
+    data,
+  })) as any;
+};

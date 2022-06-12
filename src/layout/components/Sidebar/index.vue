@@ -12,12 +12,16 @@ const handleClose = (key: string, keyPath: string[]) => {
 };
 
 const routes = computed(() => useRouter().options.routes);
-// console.log('routes', routes.value);
+
+const defaultActive = computed(() => useRouter().currentRoute.value.path);
+console.log('routes', useRouter());
+console.log('routes', useRouter().currentRoute.value.path);
 </script>
 
 <template>
   <el-scrollbar class="scrollbar-wrapper">
     <el-menu
+      :default-active="defaultActive"
       :collapse="isCollapse"
       text-color="#ffffffb3"
       active-text-color="#fff"
