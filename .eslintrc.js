@@ -18,23 +18,9 @@ module.exports = {
   ],
 
   rules: {
-    indent: [0],
+    indent: ['off'],
+    'vue/multi-word-component-names': 'off', // 组件名字要多个单词
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
-  overrides: [
-    {
-      files: ['src/views/index.vue', 'src/views/**/index.vue'], // 匹配views和二级目录中的index.vue
-      rules: {
-        'vue/multi-word-component-names': 'off', // 组件名字要多个单词
-      },
-    },
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
-      ],
-      env: {
-        jest: true,
-      },
-    },
-  ],
 };

@@ -1,0 +1,22 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './base.scss';
+@import './sidebar.scss';
+
+// body
+body {
+  background-color: $bgColor;
+}
+
+// AppMain.vue
+.main-container {
+  width: calc(100vw - $sideBarWidth);
+  min-height: 100vh;
+  margin-left: $sideBarWidth;
+}
+
+.content-container {
+  padding: $moduleSpacing;
+}

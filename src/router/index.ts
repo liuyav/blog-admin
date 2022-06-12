@@ -1,15 +1,57 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import Layout from '@/layout/index.vue';
+import { Platform, Document } from '@element-plus/icons-vue';
 
 const routes: Array<RouteRecordRaw> = [
+  // 仪表盘
   {
     path: '/',
-    name: 'Index',
+    redirect: '/dashboard/analysis',
+    component: Layout,
     meta: {
-      title: '首页',
+      title: 'Dashboard',
       keepAlive: true,
       requireAuth: true,
+      icon: Platform,
     },
-    component: () => import('@/views/index.vue'),
+    children: [
+      {
+        path: '/dashboard/analysis',
+        meta: {
+          title: '分析页',
+          keepAlive: true,
+          requireAuth: true,
+        },
+        component: () => import('@/views/dashboard/analysis/index.vue'),
+      },
+      {
+        path: '/dashboard/workbench',
+        meta: {
+          title: '工作台',
+          keepAlive: true,
+          requireAuth: true,
+        },
+        component: () => import('@/views/dashboard/workbench/index.vue'),
+      },
+    ],
+  },
+  // 文章管理
+  {
+    path: '/article',
+    redirect: '/article/manage',
+    component: Layout,
+    children: [
+      {
+        path: 'manage',
+        component: () => import('@/views/article/index.vue'),
+        meta: {
+          title: '文章管理',
+          keepAlive: true,
+          requireAuth: true,
+          icon: Document,
+        },
+      },
+    ],
   },
 ];
 

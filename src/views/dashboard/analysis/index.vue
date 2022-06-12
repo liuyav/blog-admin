@@ -1,7 +1,4 @@
 <template>
-  <div>111</div>
+  <div>analysis</div>
 </template>
-
 <script setup lang="ts"></script>
-
-<style></style>
