@@ -35,4 +35,13 @@ export interface Article {
   status: Status;
 }
 
+/** 文章列表 */
 export type ArticleList = Article[];
+
+/** 更改启用状态参数 */
+export interface EnableParams {
+  /** 文章id */
+  id: string;
+  /** 状态 */
+  status: Status;
+}

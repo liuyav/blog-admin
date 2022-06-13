@@ -1,13 +1,24 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
-import { queryArticleList, deleteArticle } from '@/api/article/index';
-import { Article, Status, StatusIcon } from '@/api/article/types';
+import { onMounted, reactive, Ref, ref } from 'vue';
+import {
+  queryArticleList,
+  deleteArticle,
+  updateEnableStatus,
+} from '@/api/article/index';
+import {
+  Article,
+  ArticleList,
+  Status,
+  StatusIcon,
+  EnableParams,
+} from '@/api/article/types';
 import { formatTime } from '@/utils/index';
 import { ElMessage } from 'element-plus';
+import { BaseResponse } from '@/api/types';
 
 const listRef = ref(null);
 // 列表数据
-const list = ref([]);
+const list: Ref<ArticleList> = ref([]);
 // 列表loading
 const listLoading = ref(true);
 // 查询条件
@@ -44,7 +55,6 @@ const onReset = () => {
 const onEdit = (rowData: Article) => {
   console.log('onEdit', rowData);
 };
-
 // 点击删除
 const onDelete = async (rowData: Article) => {
   const id = rowData._id;
@@ -53,13 +63,47 @@ const onDelete = async (rowData: Article) => {
     getArticleList();
   }
 };
-// 点击取消
+// 取消删除
 const onCancel = () => {
   ElMessage({
     message: '取消删除',
     grouping: true,
     type: 'info',
   });
+};
+
+// 停启用状态参数
+const enableStatus: EnableParams = reactive({
+  id: '',
+  status: 0,
+});
+// 选择的数据
+const selectData: Ref<ArticleList> = ref([]);
+/** 选择数据触发 */
+const onSelectionChange = (row: ArticleList) => {
+  selectData.value = row;
+};
+/** 更新停启用 */
+const onUpdateStatus = async (status: number) => {
+  if (selectData.value.length !== 1) {
+    ElMessage({
+      type: 'error',
+      message: '请选择一条数据',
+    });
+    return;
+  }
+  enableStatus.status = status;
+  enableStatus.id = selectData.value[0]._id;
+  const { code }: any = await updateEnableStatus(enableStatus);
+  if (code === 0) {
+    list.value = list.value.map((item: Article) => {
+      if (item._id === enableStatus.id) {
+        item.status = status;
+      }
+      return item;
+    });
+    console.log('res', list);
+  }
 };
 
 onMounted(getArticleList);
@@ -72,8 +116,8 @@ onMounted(getArticleList);
       <!-- 按钮 -->
       <div>
         <el-button type="primary" icon="Plus">新增</el-button>
-        <el-button icon="unlock">启用</el-button>
-        <el-button icon="lock">停用</el-button>
+        <el-button icon="unlock" @click="onUpdateStatus(1)">启用</el-button>
+        <el-button icon="lock" @click="onUpdateStatus(2)">停用</el-button>
       </div>
       <!-- 查询条件 -->
       <el-form ref="listRef" inline :model="searchParams">
@@ -97,6 +141,7 @@ onMounted(getArticleList);
       :data="list"
       :border="true"
       highlight-current-row
+      @selection-change="onSelectionChange"
     >
       <el-table-column type="selection" fixed="left" />
       <el-table-column prop="_id" label="文章 ID" width="160px" fixed="left">

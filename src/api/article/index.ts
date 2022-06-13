@@ -1,5 +1,5 @@
 import request from '@/utils/request';
-import type { ArticleListParams, ArticleList } from './types';
+import type { ArticleListParams, ArticleList, EnableParams } from './types';
 import type { BaseResponse } from '../types';
 
 /**
@@ -30,4 +30,13 @@ export const deleteArticle = async (data: {
     url: '/article',
     data,
   })) as any;
+};
+
+/** 更新停启用状态 */
+export const updateEnableStatus = async (data: EnableParams) => {
+  return await request({
+    method: 'patch',
+    url: 'article/updateStatus',
+    data,
+  });
 };
