@@ -1,4 +1,5 @@
 import moment from 'moment';
+import path from 'path-browserify';
 
 /**
  * 时间格式化方法
@@ -16,4 +17,20 @@ export const formatTime = (time: Date, format: string) => {
  */
 export function isExternal(path: string) {
   return /^(https?:|mailto:|tel:)/.test(path);
+}
+
+/**
+ * 拼接路由路径
+ * @param basePath
+ * @param routePath
+ * @returns
+ */
+export function resolveRoutePath(basePath: string, routePath: string) {
+  if (isExternal(routePath)) {
+    return routePath;
+  }
+  if (isExternal(basePath)) {
+    return basePath;
+  }
+  return basePath ? path.resolve(basePath, routePath) : routePath;
 }
