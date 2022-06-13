@@ -1,6 +1,24 @@
-# 变更文档
+# Changelog
 
-所有的提交变更都会被记录在这个文档. 详情查看 [standard-version](https://github.com/conventional-changelog/standard-version)
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.1.2](https://github.com/liuyav/blog/compare/v0.1.1...v0.1.2) (2022-06-13)
+
+
+### ✏️ Documentation | 文档
+
+* **CHANGELOG.md:** 手动修改v0.1.1CHANGELOG排序 ([16f4b07](https://github.com/liuyav/blog/commit/16f4b075b880c1ec37867fec52b27ae72951b8e6))
+* **CHANGELOG:** 修改CHANGELOG中文描述 ([740388f](https://github.com/liuyav/blog/commit/740388f9fbef4a0c8c827f72a874f69b306c0100))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 增加 path-browserify 与其类型文件 @types/path-browserify ([e8c822d](https://github.com/liuyav/blog/commit/e8c822debbaaff49ed93fbed3bb83fcfe00103fa))
+
+
+### ✨ Features | 新功能
+
+* 侧边菜单功能完善 ([5c040f3](https://github.com/liuyav/blog/commit/5c040f357dcbf0d4ebffeff1e2a2d9abd399f11d))
 
 ### [0.1.1](https://github.com/liuyav/blog/compare/v0.1.0...v0.1.1) (2022-06-13)
 
