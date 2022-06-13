@@ -17,13 +17,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ✨ Features | 新功能
 
-* 集成mock服务 ([5f3c2a8](https://github.com/liuyav/blog/commit/5f3c2a81b8acbbf95e0685adf63cddd1f7b15f20))
-* 精简版菜单 ([eaf3e01](https://github.com/liuyav/blog/commit/eaf3e014a978fb5182a7cbf63f3df2284b5e923d))
-* 文章列表分页查询、删除功能 ([794be38](https://github.com/liuyav/blog/commit/794be3834695ca1d1205d7aef82baff3c60cb95c))
 * 文章停用启用 ([d03e824](https://github.com/liuyav/blog/commit/d03e824e42859509c592375b0e04e6d9439e0f52))
-* feature: 文章模糊搜索 ([65c6a90](https://github.com/liuyav/blog/commit/65c6a9090607236a5f0235199d992f518f56eae0))
-* **request.ts:** 封装axios ([678a0be](https://github.com/liuyav/blog/commit/678a0bed65683c46dbde208d389dbc197a702248))
+* 文章模糊搜索 ([65c6a90](https://github.com/liuyav/blog/commit/65c6a9090607236a5f0235199d992f518f56eae0))
+* 文章列表分页查询、删除功能 ([794be38](https://github.com/liuyav/blog/commit/794be3834695ca1d1205d7aef82baff3c60cb95c))
+* 精简版菜单 ([eaf3e01](https://github.com/liuyav/blog/commit/eaf3e014a978fb5182a7cbf63f3df2284b5e923d))
+* 集成mock服务 ([5f3c2a8](https://github.com/liuyav/blog/commit/5f3c2a81b8acbbf95e0685adf63cddd1f7b15f20))
 * **vite.config.ts:** 引入vite-plugin-style-import处理样式按需引入 ([19868a9](https://github.com/liuyav/blog/commit/19868a95e514fd81c7700be7fc0327c34f58d299))
+* **request.ts:** 封装axios ([678a0be](https://github.com/liuyav/blog/commit/678a0bed65683c46dbde208d389dbc197a702248))
 
 ## 0.1.0 (2022-06-03)
 
