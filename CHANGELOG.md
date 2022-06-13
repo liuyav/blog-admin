@@ -1,6 +1,6 @@
-# Changelog
+# 变更文档
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+所有的提交变更都会被记录在这个文档. 详情查看 [standard-version](https://github.com/conventional-changelog/standard-version)
 
 ### [0.1.1](https://github.com/liuyav/blog/compare/v0.1.0...v0.1.1) (2022-06-13)
 
