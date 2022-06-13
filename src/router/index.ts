@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue';
-import { Platform, Document } from '@element-plus/icons-vue';
 
 const routes: Array<RouteRecordRaw> = [
   // 仪表盘
@@ -12,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
       title: 'Dashboard',
       keepAlive: true,
       requireAuth: true,
-      icon: Platform,
+      icon: 'Platform',
     },
     children: [
       {
@@ -39,15 +38,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/article',
     component: Layout,
+    redirect: '/article/list',
     children: [
       {
-        path: '',
+        path: 'list',
         component: () => import('@/views/article/index.vue'),
         meta: {
           title: '文章管理',
           keepAlive: true,
           requireAuth: true,
-          icon: Document,
+          icon: 'Document',
         },
       },
     ],
@@ -58,4 +58,5 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
 export default router;

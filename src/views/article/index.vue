@@ -5,6 +5,7 @@ import { Article, Status, StatusIcon } from '@/api/article/types';
 import { formatTime } from '@/utils/index';
 import { ElMessage } from 'element-plus';
 
+const listRef = ref(null);
 // 列表数据
 const list = ref([]);
 // 列表loading
@@ -35,7 +36,8 @@ const onCurrentChange = (currentPage: number) => {
 };
 // 重置查询条件
 const onReset = () => {
-  console.log('reset');
+  (listRef.value as any).resetFields();
+  console.log('reset', listRef);
 };
 
 // 点击编辑
@@ -74,8 +76,8 @@ onMounted(getArticleList);
         <el-button icon="lock">停用</el-button>
       </div>
       <!-- 查询条件 -->
-      <el-form inline :model="searchParams">
-        <el-form-item label="文章标题：">
+      <el-form ref="listRef" inline :model="searchParams">
+        <el-form-item label="文章标题：" prop="title">
           <el-input
             v-model="searchParams.title"
             placeholder="文章标题模糊查询"

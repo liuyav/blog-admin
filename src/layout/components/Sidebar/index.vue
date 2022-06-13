@@ -13,9 +13,8 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 const routes = computed(() => useRouter().options.routes);
 
+/** 默认选中路由 */
 const defaultActive = computed(() => useRouter().currentRoute.value.path);
-console.log('routes', useRouter());
-console.log('routes', useRouter().currentRoute.value.path);
 </script>
 
 <template>
@@ -35,7 +34,7 @@ console.log('routes', useRouter().currentRoute.value.path);
         v-for="route in routes"
         :key="route.path"
         :item="route"
-        :path="route.path"
+        :base-path="route.path"
       />
     </el-menu>
   </el-scrollbar>

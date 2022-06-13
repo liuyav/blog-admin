@@ -9,3 +9,11 @@ import moment from 'moment';
 export const formatTime = (time: Date, format: string) => {
   return moment(time).format(format);
 };
+
+/**
+ * @param {string} path
+ * @returns {Boolean}
+ */
+export function isExternal(path: string) {
+  return /^(https?:|mailto:|tel:)/.test(path);
+}
