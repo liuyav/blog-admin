@@ -25,7 +25,9 @@ export function isExternal(path: string) {
  * @param routePath
  * @returns
  */
-export function resolveRoutePath(basePath: string, routePath: string) {
+export function resolvePath(basePath: string, routePath: string) {
+  console.log('basePath', basePath);
+  console.log('routePath', routePath);
   if (isExternal(routePath)) {
     return routePath;
   }

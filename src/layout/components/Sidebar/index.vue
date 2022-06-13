@@ -4,12 +4,13 @@ import { useRouter } from 'vue-router';
 import SidebarItem from './SidebarItem.vue';
 
 const isCollapse = ref(false);
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+
+// const handleOpen = (key: string, keyPath: string[]) => {
+//   console.log(key, keyPath);
+// };
+// const handleClose = (key: string, keyPath: string[]) => {
+//   console.log(key, keyPath);
+// };
 
 const routes = computed(() => useRouter().options.routes);
 
@@ -27,8 +28,6 @@ const defaultActive = computed(() => useRouter().currentRoute.value.path);
       background-color="#001529"
       :unique-opened="false"
       mode="vertical"
-      @open="handleOpen"
-      @close="handleClose"
     >
       <SidebarItem
         v-for="route in routes"

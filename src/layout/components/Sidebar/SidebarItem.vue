@@ -1,48 +1,94 @@
 <template>
-  <el-sub-menu v-if="hasDownMenu" :index="path">
-    <template #title>
-      <el-icon><component :is="item.meta.icon" /></el-icon>
-      <span>{{ item.meta.title }}</span>
-    </template>
-    <el-menu-item
-      v-for="childItem in item.children"
-      :key="childItem.path"
-      :index="childItem.path"
+  <div v-if="!item.hidden">
+    <template
+      v-if="
+        hasOneShowingChild(item.children, item) &&
+        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+        !item.alwaysShow
+      "
     >
-      <template #title>
-        <router-link :to="childItem.path">
-          {{ childItem.meta.title }}
-        </router-link>
-      </template>
-    </el-menu-item>
-  </el-sub-menu>
-  <el-menu-item v-else :index="path">
-    <template #title>
-      <el-icon><component :is="item.children[0].meta.icon" /></el-icon>
-      <router-link :to="item.path">
-        {{ item.children[0].meta.title }}
+      <router-link
+        v-if="onlyOneChild.meta"
+        :to="resolvePath(basePath, onlyOneChild.path)"
+      >
+        <el-menu-item :index="resolvePath(basePath, onlyOneChild.path)">
+          <el-icon
+            ><component
+              :is="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+            ></component
+          ></el-icon>
+          <span>{{ onlyOneChild.meta.title }}</span>
+        </el-menu-item>
       </router-link>
     </template>
-  </el-menu-item>
+
+    <el-sub-menu
+      v-else
+      ref="subMenu"
+      :index="resolvePath(basePath, item.path)"
+      popper-append-to-body
+    >
+      <template #title>
+        <div>
+          <el-icon
+            ><component :is="item.meta && item.meta.icon"></component
+          ></el-icon>
+          <span>{{ item.meta.title }}</span>
+        </div>
+      </template>
+      <SidebarItem
+        v-for="child in item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        :base-path="resolvePath(basePath, child.path)"
+      />
+    </el-sub-menu>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { computed } from 'vue';
+<script setup lang="ts" name="SidebarItem">
+import { Ref, ref, toRefs } from 'vue';
+import { resolvePath } from '@/utils/index';
 
 const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
-  path: {
+  basePath: {
     type: String,
     default: '',
   },
 });
 
-const hasDownMenu = computed(() => {
-  return props.item.children.length > 1;
-});
-</script>
+const onlyOneChild: Ref<any> = ref(null);
 
-<style></style>
+const { basePath } = toRefs(props);
+
+const hasOneShowingChild = (children = [], parent: any) => {
+  // 过滤掉隐藏子路由，并且把最后一个路由赋值给 onlyOneChild 变量
+  const showingChildren = children.filter((item: any) => {
+    if (item.hidden) {
+      return false;
+    } else {
+      // Temp set(will be used if only has one showing child)
+      onlyOneChild.value = item;
+      return true;
+    }
+  });
+
+  // 判断子路由数量是否等于1
+  if (showingChildren.length === 1) {
+    return true;
+  }
+
+  // 子路由数量等于0，就把自己路由赋值给
+  if (showingChildren.length === 0) {
+    onlyOneChild.value = { ...parent, path: '', noShowingChildren: true };
+    return true;
+  }
+
+  return false;
+};
+</script>

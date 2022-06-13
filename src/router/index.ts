@@ -4,7 +4,7 @@ import Layout from '@/layout/index.vue';
 const routes: Array<RouteRecordRaw> = [
   // 仪表盘
   {
-    path: '/',
+    path: '/dashboard',
     redirect: '/dashboard/analysis',
     component: Layout,
     meta: {
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: '/dashboard/analysis',
+        path: 'analysis',
         meta: {
           title: '分析页',
           keepAlive: true,
@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/dashboard/analysis/index.vue'),
       },
       {
-        path: '/dashboard/workbench',
+        path: 'workbench',
         meta: {
           title: '工作台',
           keepAlive: true,
