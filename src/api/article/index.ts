@@ -18,6 +18,18 @@ export const queryArticleList = async (
 };
 
 /**
+ * 查询文章详情
+ * @param params
+ * @returns
+ */
+export const queryArticleDetail = async (params: { id: string }) => {
+  return await request({
+    method: 'get',
+    url: `/article/${params.id}`,
+  });
+};
+
+/**
  * 删除指定文章
  * @param data 文章删除参数
  * @returns
@@ -36,7 +48,15 @@ export const deleteArticle = async (data: {
 export const updateEnableStatus = async (data: EnableParams) => {
   return await request({
     method: 'patch',
-    url: 'article/updateStatus',
+    url: '/article/updateStatus',
     data,
+  });
+};
+
+/** 查询文章分类 */
+export const queryClassify = async () => {
+  return await request({
+    method: 'get',
+    url: '/classify',
   });
 };

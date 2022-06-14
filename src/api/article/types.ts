@@ -21,6 +21,13 @@ export enum StatusIcon {
   Lock,
 }
 
+/** 文章类型 */
+export enum ArticleType {
+  add = '创建',
+  edit = '编辑',
+  view = '查看',
+}
+
 /** 文章详情 */
 export interface Article {
   _id: string;

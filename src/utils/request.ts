@@ -74,7 +74,6 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log('config', config);
     return config;
   },
   (error) => {
@@ -90,7 +89,7 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     const status = response.status;
     let msg = '';
-    console.log('response', response);
+    // console.log('response', response);
     if (status < 200 || status >= 300) {
       // 处理http错误，抛到业务代码
       msg = showStatus(status);
@@ -101,7 +100,7 @@ service.interceptors.response.use(
       }
     } else if (status === 200) {
       const { tool } = response.data;
-      const { message, tipType = '', title, type } = tool;
+      const { message, tipType = '', title, type } = tool || {};
       if (tipType === 'ElMessage') {
         ElMessage({ type, message, grouping: true });
       } else if (tipType === 'ElNotification') {

@@ -45,4 +45,12 @@ body {
     display: flex;
     align-items: center;
   }
+
+  /** 内容通用间距边距 */
+  .cpt {
+    padding-top: $contentSpacing;
+  }
+  .cpb {
+    padding-bottom: $contentSpacing;
+  }
 }

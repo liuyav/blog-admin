@@ -39,6 +39,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/article',
     component: Layout,
     redirect: '/article/list',
+    meta: {
+      title: '文章管理',
+      keepAlive: true,
+      requireAuth: true,
+      icon: 'Document',
+    },
     children: [
       {
         path: 'list',
@@ -47,7 +53,16 @@ const routes: Array<RouteRecordRaw> = [
           title: '文章管理',
           keepAlive: true,
           requireAuth: true,
-          icon: 'Document',
+        },
+      },
+      {
+        path: 'list/:type/:id?',
+        name: 'Detail',
+        component: () => import('@/views/article/Detail.vue'),
+        meta: {
+          title: '文章详情',
+          hidden: true,
+          activeMenu: '/article/list',
         },
       },
     ],

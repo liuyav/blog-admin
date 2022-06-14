@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, Ref, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import {
   queryArticleList,
   deleteArticle,
@@ -13,10 +14,11 @@ import {
   EnableParams,
 } from '@/api/article/types';
 import { formatTime } from '@/utils/index';
-import { ElMessage } from 'element-plus';
-import { BaseResponse } from '@/api/types';
+import { ElMessage, FormInstance } from 'element-plus';
 
-const listRef = ref(null);
+const router = useRouter();
+
+const listRef = ref<FormInstance>();
 // 列表数据
 const list: Ref<ArticleList> = ref([]);
 // 列表loading
@@ -38,7 +40,7 @@ const getArticleList = async () => {
   searchParams.total = data.pageInfo.total;
   searchParams.currentPage = data.pageInfo.currentPage;
   searchParams.pageSize = data.pageInfo.pageSize;
-  console.log('文章列表：', list.value, searchParams);
+  console.log('文章列表：', list.value);
 };
 // 页码改变
 const onCurrentChange = (currentPage: number) => {
@@ -47,13 +49,27 @@ const onCurrentChange = (currentPage: number) => {
 };
 // 重置查询条件
 const onReset = () => {
-  (listRef.value as any).resetFields();
+  listRef.value?.resetFields();
   console.log('reset', listRef);
 };
-
-// 点击编辑
-const onEdit = (rowData: Article) => {
-  console.log('onEdit', rowData);
+/** 新增 */
+const onAdd = () => {
+  router.push({
+    name: 'Detail',
+    params: {
+      type: 'add',
+    },
+  });
+};
+/** 编辑 */
+const onEdit = (id: string) => {
+  router.push({
+    name: 'Detail',
+    params: {
+      type: 'edit',
+      id,
+    },
+  });
 };
 // 点击删除
 const onDelete = async (rowData: Article) => {
@@ -115,7 +131,7 @@ onMounted(getArticleList);
     <div class="article-header">
       <!-- 按钮 -->
       <div>
-        <el-button type="primary" icon="Plus">新增</el-button>
+        <el-button type="primary" icon="Plus" @click="onAdd">新增</el-button>
         <el-button icon="unlock" @click="onUpdateStatus(1)">启用</el-button>
         <el-button icon="lock" @click="onUpdateStatus(2)">停用</el-button>
       </div>
@@ -159,18 +175,18 @@ onMounted(getArticleList);
         </template>
       </el-table-column>
       <el-table-column prop="author" label="作者" />
-      <el-table-column prop="classify.name" label="分类" />
-      <el-table-column prop="classify.tags" label="标签数量">
+      <el-table-column prop="classify.label" label="分类" />
+      <el-table-column prop="classify.children" label="标签数量">
         <template #default="{ row }">
           <el-tooltip
             effect="light"
-            :content="row.classify.tags.join('、')"
+            :content="row.classify.children.join('、')"
             placement="right"
           >
             <el-link>
               <el-icon><CollectionTag /></el-icon>
               <span type="primary" class="spacing-s">{{
-                row.classify.tags.length
+                row.classify.children.length
               }}</span>
             </el-link>
           </el-tooltip>
@@ -217,7 +233,7 @@ onMounted(getArticleList);
       <el-table-column label="操作" width="140px" fixed="right">
         <template #default="{ row }">
           <div style="display: flex; align-items: center">
-            <el-link type="primary" icon="Edit" @click="onEdit(row)">
+            <el-link type="primary" icon="Edit" @click="onEdit(row._id)">
               <span class="spacing-s">编辑</span>
             </el-link>
             <el-divider direction="vertical" />

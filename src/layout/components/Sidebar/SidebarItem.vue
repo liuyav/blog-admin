@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!item.hidden">
+  <div v-if="!item.meta.hidden">
     <template
       v-if="
         hasOneShowingChild(item.children, item) &&
@@ -69,7 +69,7 @@ const { basePath } = toRefs(props);
 const hasOneShowingChild = (children = [], parent: any) => {
   // 过滤掉隐藏子路由，并且把最后一个路由赋值给 onlyOneChild 变量
   const showingChildren = children.filter((item: any) => {
-    if (item.hidden) {
+    if (item.meta.hidden) {
       return false;
     } else {
       // Temp set(will be used if only has one showing child)

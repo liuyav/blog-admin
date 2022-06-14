@@ -29,4 +29,14 @@
     padding: 0;
     margin-top: $contentSpacing;
   }
+
+  // 修改radio按钮样式
+  & .el-radio.is-bordered {
+    margin-right: $contentSpacing;
+  }
+
+  // 修改checkbox默认样式
+  & .el-checkbox {
+    margin-right: $contentSpacing;
+  }
 }
