@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import SidebarItem from './SidebarItem.vue';
 
 const isCollapse = ref(false);
@@ -15,7 +15,13 @@ const isCollapse = ref(false);
 const routes = computed(() => useRouter().options.routes);
 
 /** 默认选中路由 */
-const defaultActive = computed(() => useRouter().currentRoute.value.path);
+const defaultActive = computed(() => {
+  const { meta, path } = useRoute();
+  if (meta.activeMenu) {
+    return meta.activeMenu;
+  }
+  return path;
+});
 </script>
 
 <template>
