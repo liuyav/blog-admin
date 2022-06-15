@@ -39,4 +39,15 @@
   & .el-checkbox {
     margin-right: $contentSpacing;
   }
+
+  // 面包屑样式修改
+  & .el-breadcrumb__inner {
+    color: #000000a6;
+    a {
+      font-weight: normal;
+      &:hover {
+        color: #2a7dc9;
+      }
+    }
+  }
 }

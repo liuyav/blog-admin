@@ -84,12 +84,12 @@
   }
 
   .hideSidebar {
-    .sidebar-container {
-      width: 54px !important;
+    .main-container {
+      padding-left: 54px;
     }
 
-    .main-container {
-      margin-left: 54px;
+    .sidebar-container {
+      width: 54px !important;
     }
 
     .submenu-title-noDropdown {
@@ -132,12 +132,16 @@
     .el-menu--collapse {
       .el-sub-menu {
         & > .el-sub-menu__title {
-          & > span {
-            height: 0;
-            width: 0;
-            overflow: hidden;
-            visibility: hidden;
-            display: inline-block;
+          & div {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            & span {
+              height: 0;
+              width: 0;
+              overflow: hidden;
+              visibility: hidden;
+            }
           }
         }
       }

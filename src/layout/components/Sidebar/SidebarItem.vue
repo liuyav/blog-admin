@@ -11,12 +11,10 @@
         v-if="onlyOneChild.meta"
         :to="resolvePath(basePath, onlyOneChild.path)"
       >
-        <el-menu-item :index="resolvePath(basePath, onlyOneChild.path)">
-          <el-icon
-            ><component
-              :is="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
-            ></component
-          ></el-icon>
+        <el-menu-item
+          :index="resolvePath(basePath, onlyOneChild.path)"
+          :class="{ 'submenu-title-noDropdown': !isNest }"
+        >
           <span>{{ onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </router-link>
@@ -39,6 +37,7 @@
       <SidebarItem
         v-for="child in item.children"
         :key="child.path"
+        class="nest-menu"
         :is-nest="true"
         :item="child"
         :base-path="resolvePath(basePath, child.path)"
@@ -55,6 +54,10 @@ const props = defineProps({
   item: {
     type: Object,
     required: true,
+  },
+  isNest: {
+    type: Boolean,
+    default: false,
   },
   basePath: {
     type: String,

@@ -6,6 +6,7 @@ specifiers:
   '@element-plus/icons-vue': ^2.0.4
   '@types/node': ^17.0.38
   '@types/path-browserify': ^1.0.0
+  '@types/path-to-regexp': ^1.7.0
   '@typescript-eslint/eslint-plugin': ^5.27.0
   '@typescript-eslint/parser': ^5.27.0
   '@vitejs/plugin-vue': ^2.3.3
@@ -27,6 +28,7 @@ specifiers:
   moment: ^2.29.3
   normalize.css: ^8.0.1
   path-browserify: ^1.0.1
+  path-to-regexp: ^6.2.1
   pinia: ^2.0.14
   prettier: ^2.6.2
   sass: ^1.52.1
@@ -43,6 +45,7 @@ specifiers:
 dependencies:
   '@element-plus/icons-vue': 2.0.4_vue@3.2.36
   '@types/path-browserify': 1.0.0
+  '@types/path-to-regexp': 1.7.0
   '@vueuse/core': 8.6.0_vue@3.2.36
   axios: 0.27.2
   element-plus: 2.2.2_vue@3.2.36
@@ -50,6 +53,7 @@ dependencies:
   moment: 2.29.3
   normalize.css: 8.0.1
   path-browserify: 1.0.1
+  path-to-regexp: 6.2.1
   pinia: 2.0.14_qhv4oyzxhhzeba5rd2zztmcg2y
   vditor: 3.8.15
   vue: 3.2.36
@@ -483,6 +487,13 @@ packages:
 
   /@types/path-browserify/1.0.0:
     resolution: {integrity: sha512-XMCcyhSvxcch8b7rZAtFAaierBYdeHXVvg2iYnxOV0MCQHmPuRRmGZPFDRzPayxcGiiSL1Te9UIO+f3cuj0tfw==}
+    dev: false
+
+  /@types/path-to-regexp/1.7.0:
+    resolution: {integrity: sha512-ruXmJ/6LwB5L3mxUG2z3Ovi85vH9IVubXq+S9RArvMbjhbCnSLpXs0LrHQg3f0y2tKvXhWUNv7iQDySDfHSTDw==}
+    deprecated: This is a stub types definition for path-to-regexp (https://github.com/pillarjs/path-to-regexp). path-to-regexp provides its own type definitions, so you don't need @types/path-to-regexp installed!
+    dependencies:
+      path-to-regexp: 6.2.1
     dev: false
 
   /@types/resolve/1.17.1:
@@ -3383,7 +3394,6 @@ packages:
 
   /path-to-regexp/6.2.1:
     resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
-    dev: true
 
   /path-type/3.0.0:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}

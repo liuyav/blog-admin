@@ -5,6 +5,7 @@ const routes: Array<RouteRecordRaw> = [
   // 仪表盘
   {
     path: '/dashboard',
+    name: 'DashBoard',
     redirect: '/dashboard/analysis',
     component: Layout,
     meta: {
@@ -34,21 +35,21 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  // 文章管理
+  // 内容管理
   {
-    path: '/article',
+    path: '/content',
     component: Layout,
-    redirect: '/article/list',
+    redirect: '/content/article',
     meta: {
-      title: '文章管理',
+      title: '内容管理',
       keepAlive: true,
       requireAuth: true,
       icon: 'Document',
     },
     children: [
       {
-        path: 'list',
-        component: () => import('@/views/article/index.vue'),
+        path: 'article',
+        component: () => import('@/views/content/article/index.vue'),
         meta: {
           title: '文章管理',
           keepAlive: true,
@@ -56,13 +57,81 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: 'list/:type/:id?',
+        path: 'article/:type/:id?',
         name: 'Detail',
-        component: () => import('@/views/article/Detail.vue'),
+        component: () => import('@/views/content/article/Detail.vue'),
         meta: {
           title: '文章详情',
           hidden: true,
-          activeMenu: '/article/list',
+          activeMenu: '/content/article',
+        },
+      },
+      {
+        path: 'classify',
+        component: () => import('@/views/content/classify/index.vue'),
+        meta: {
+          title: '分类管理',
+          keepAlive: true,
+          requireAuth: true,
+        },
+      },
+      {
+        path: 'tags',
+        component: () => import('@/views/content/tags/index.vue'),
+        meta: {
+          title: '标签管理',
+          keepAlive: true,
+          requireAuth: true,
+        },
+      },
+    ],
+  },
+  // 系统管理
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/account',
+    meta: {
+      title: '系统管理',
+      keepAlive: true,
+      requireAuth: true,
+      icon: 'Setting',
+    },
+    children: [
+      {
+        path: 'account',
+        component: () => import('@/views/system/account/index.vue'),
+        meta: {
+          title: '账号管理',
+          keepAlive: true,
+          requireAuth: true,
+        },
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/system/role/index.vue'),
+        meta: {
+          title: '角色管理',
+          keepAlive: true,
+          requireAuth: true,
+        },
+      },
+      {
+        path: 'menu',
+        component: () => import('@/views/system/menu/index.vue'),
+        meta: {
+          title: '菜单管理',
+          keepAlive: true,
+          requireAuth: true,
+        },
+      },
+      {
+        path: 'pwd',
+        component: () => import('@/views/system/pwd/index.vue'),
+        meta: {
+          title: '密码管理',
+          keepAlive: true,
+          requireAuth: true,
         },
       },
     ],

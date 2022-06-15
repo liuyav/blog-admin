@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container :class="{ hideSidebar: hideSidebar }">
     <!-- 侧边菜单 -->
     <Sidebar class="sidebar-container" />
     <!-- 内容区 -->
@@ -9,5 +9,9 @@
 
 <script setup lang="ts">
 import Sidebar from '@/layout/components/Sidebar/index.vue';
-import AppMain from '@/layout/components/AppMain.vue';
+import AppMain from '@/layout/components/AppMain/index.vue';
+import { useAppStore } from '@/store/modules/app';
+import { computed } from 'vue';
+
+const hideSidebar = computed(() => useAppStore().sidebar);
 </script>

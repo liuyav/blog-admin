@@ -27,7 +27,7 @@ const listLoading = ref(true);
 const searchParams = reactive({
   title: '',
   currentPage: 1,
-  pageSize: 16,
+  pageSize: 15,
   total: 0,
 });
 // 获取文章列表
@@ -67,6 +67,16 @@ const onEdit = (id: string) => {
     name: 'Detail',
     params: {
       type: 'edit',
+      id,
+    },
+  });
+};
+/** 查看 */
+const onView = (id: string) => {
+  router.push({
+    name: 'Detail',
+    params: {
+      type: 'view',
       id,
     },
   });
@@ -159,7 +169,7 @@ onMounted(getArticleList);
       highlight-current-row
       @selection-change="onSelectionChange"
     >
-      <el-table-column type="selection" fixed="left" />
+      <el-table-column type="selection" fixed="left" width="40px" />
       <el-table-column prop="_id" label="文章 ID" width="160px" fixed="left">
         <template #default="{ row }">
           <el-tooltip effect="light" :content="row._id" placement="left">
@@ -230,11 +240,15 @@ onMounted(getArticleList);
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" width="140px" fixed="right">
+      <el-table-column label="操作" width="200px" fixed="right">
         <template #default="{ row }">
           <div style="display: flex; align-items: center">
             <el-link type="primary" icon="Edit" @click="onEdit(row._id)">
               <span class="spacing-s">编辑</span>
+            </el-link>
+            <el-divider direction="vertical" />
+            <el-link type="primary" icon="View" @click="onView(row._id)">
+              <span class="spacing-s">查看</span>
             </el-link>
             <el-divider direction="vertical" />
             <el-popconfirm

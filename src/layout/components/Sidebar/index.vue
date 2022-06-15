@@ -1,16 +1,10 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { useAppStore } from '@/store/modules/app';
+import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import SidebarItem from './SidebarItem.vue';
 
-const isCollapse = ref(false);
-
-// const handleOpen = (key: string, keyPath: string[]) => {
-//   console.log(key, keyPath);
-// };
-// const handleClose = (key: string, keyPath: string[]) => {
-//   console.log(key, keyPath);
-// };
+const isCollapse = computed(() => useAppStore().sidebar);
 
 const routes = computed(() => useRouter().options.routes);
 
@@ -29,10 +23,11 @@ const defaultActive = computed(() => {
     <el-menu
       :default-active="defaultActive"
       :collapse="isCollapse"
+      class="el-menu-vertical-demo"
       text-color="#ffffffb3"
       active-text-color="#fff"
       background-color="#001529"
-      :unique-opened="false"
+      :unique-opened="true"
       mode="vertical"
     >
       <SidebarItem
@@ -44,3 +39,9 @@ const defaultActive = computed(() => {
     </el-menu>
   </el-scrollbar>
 </template>
+<style lang="scss" scoped>
+// .el-menu-vertical-demo:not(.el-menu--collapse) {
+//   width: 200px;
+//   min-height: 400px;
+// }
+</style>
